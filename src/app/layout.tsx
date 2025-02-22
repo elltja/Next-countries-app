@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Countries App",
+  title: "Country Explorer",
   description: "Search information about any country",
 };
 

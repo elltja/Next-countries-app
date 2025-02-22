@@ -1,3 +1,4 @@
+import CountryInfo from "@/components/CountryInfo";
 import GoogleMapsButton from "@/components/GoogleMapsButton";
 import { country } from "@/lib/types";
 import Image from "next/image";
@@ -28,29 +29,6 @@ export default async function CountryPage({
   return (
     <div className="container p-8">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-24 justify-center my-32">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold text-gray-800">
-            {countryData.name.common}
-          </h1>
-          <p className="text-lg">
-            Capital:{" "}
-            <span className="text-gray-600">{countryData.capital}</span>
-          </p>
-          <p className="text-lg">
-            Population:{" "}
-            <span className="text-gray-600">
-              {countryData.population.toLocaleString()}
-            </span>
-          </p>
-          <p className="text-lg">
-            Region: <span className="text-gray-600">{countryData.region}</span>
-          </p>
-          <p className="text-lg">
-            Subregion:{" "}
-            <span className="text-gray-600">{countryData.subregion}</span>
-          </p>
-          <GoogleMapsButton url={countryData.maps.googleMaps} />
-        </div>
         <Image
           src={countryData.flags.svg}
           alt={`${countryData.name.common}'s flag`}
@@ -58,6 +36,49 @@ export default async function CountryPage({
           height={0}
           className="h-60 w-fit rounded-lg"
         />
+        <div className="flex flex-col gap-6">
+          <h1 className="text-4xl font-bold text-gray-800">
+            {countryData.name.common}
+          </h1>
+          <div className="flex flex-col h-48 flex-wrap gap-4">
+            {countryData.capital && (
+              <CountryInfo label="Capital" value={countryData.capital} />
+            )}
+            {countryData.population && (
+              <CountryInfo
+                label="Population"
+                value={countryData.population.toString()}
+              />
+            )}
+            {countryData.region && (
+              <CountryInfo label="Region" value={countryData.region} />
+            )}
+            {countryData.subregion && (
+              <CountryInfo label="Subregion" value={countryData.subregion} />
+            )}
+            {countryData.languages && (
+              <CountryInfo
+                label="Languages"
+                value={Object.values(countryData.languages).join(", ")}
+              />
+            )}
+            {countryData.timezones && (
+              <CountryInfo
+                label="Timezones"
+                value={countryData.timezones
+                  .map((timezone: string) => timezone)
+                  .join(", ")}
+              />
+            )}
+            {countryData.tld && (
+              <CountryInfo
+                label="Country Code"
+                value={countryData.tld.map((tld: string) => tld).join(", ")}
+              />
+            )}
+          </div>
+          <GoogleMapsButton url={countryData.maps.googleMaps} />
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { CountryCard } from "@/components/CountryCard";
 import FilterSelect from "@/components/FilterSelect";
 import SearchBox from "@/components/SearchBox";
+import { Button } from "@/components/ui/button";
 import { type country } from "@/lib/types";
 
 export default async function HomePage({
@@ -25,9 +26,10 @@ export default async function HomePage({
   });
   return (
     <div className="p-10 flex flex-col gap-8">
-      <h1 className="mx-auto my-12 text-center font-bold text-5xl">
-        Search Countries
-      </h1>
+      <div className="flex flex-col gap-12 items-center my-12">
+        <h1 className="text-center font-bold text-5xl">Explore Countries</h1>
+        {/* <Button className="px-8 py-5">Random</Button> */}
+      </div>
       <div className="flex gap-2 py-5">
         <div className="flex-1">
           <SearchBox />
