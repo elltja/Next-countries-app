@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Input } from "./ui/input";
 
 export default function SearchBox() {
   const searchParams = useSearchParams();
@@ -23,11 +24,12 @@ export default function SearchBox() {
 
   return (
     <div>
-      <input
+      <Input
         onChange={(e) => setQuery(e.target.value)}
         value={query}
         type="text"
-        className="text-black"
+        placeholder="Search country"
+        className="text-black w-64"
       />
     </div>
   );
