@@ -29,7 +29,7 @@ export default function SearchBox() {
         value={query}
         type="text"
         placeholder="Search country"
-        className="text-black w-64"
+        className="text-black"
       />
     </div>
   );

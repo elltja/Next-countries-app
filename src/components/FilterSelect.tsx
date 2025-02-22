@@ -8,18 +8,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useSearchParams, useRouter } from "next/navigation";
-
 import { useEffect, useState } from "react";
 
-export default function CountryFilterSelect() {
+export default function FilterSelect() {
   const searchParams = useSearchParams();
   const r = searchParams.get("region");
   const router = useRouter();
-  const [region, setRegion] = useState(r || "");
+  const [region, setRegion] = useState(r || "null");
 
   useEffect(() => {
-    console.log(region);
-
     const params = new URLSearchParams(window.location.search);
     if (region && region != "null") {
       params.set("region", region);
@@ -32,10 +29,10 @@ export default function CountryFilterSelect() {
 
   return (
     <Select value={region} onValueChange={(value) => setRegion(value)}>
-      <SelectTrigger className="w-64">
+      <SelectTrigger>
         <SelectValue placeholder="Region" />
       </SelectTrigger>
-      <SelectContent defaultChecked={true}>
+      <SelectContent>
         <SelectItem value="null">All Regions</SelectItem>
         <SelectItem value="africa">Africa</SelectItem>
         <SelectItem value="americas">Americas</SelectItem>

@@ -3,7 +3,9 @@ import { country } from "@/types/types";
 export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
-  const res = await fetch("https://restcountries.com/v3.1/all?fields=name");
+  const res = await fetch("https://restcountries.com/v3.1/all?fields=name", {
+    next: { revalidate: 86400 },
+  });
   const countries = await res.json();
 
   return countries.map((country: country) => ({

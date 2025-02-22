@@ -11,7 +11,7 @@ export function CountryCard({
   population: number;
 }) {
   return (
-    <Card className="w-full max-w-sm">
+    <Card>
       <CardHeader>
         <CardTitle className="hover:cursor-pointer hover:underline">
           <Link href={name.toLowerCase()}>{name}</Link>

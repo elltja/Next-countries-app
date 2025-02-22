@@ -1,5 +1,5 @@
-import { CountryCard } from "@/components/countryCard";
-import CountryFilterSelect from "@/components/CountryFilterSelect";
+import { CountryCard } from "@/components/CountryCard";
+import FilterSelect from "@/components/FilterSelect";
 import SearchBox from "@/components/SearchBox";
 import { type country } from "@/types/types";
 
@@ -24,22 +24,31 @@ export default async function HomePage({
     );
   });
   return (
-    <div className="p-10">
+    <div className="p-10 flex flex-col gap-8">
+      <h1 className="mx-auto my-12 text-center font-bold text-5xl">
+        Search Countries
+      </h1>
       <div className="flex gap-2 py-5">
-        <SearchBox />
-        <CountryFilterSelect />
+        <div className="flex-1">
+          <SearchBox />
+        </div>
+        <div className="flex-[0.5]">
+          <FilterSelect />
+        </div>
       </div>
-      <div className="flex gap-4 flex-wrap">
-        {filteredCountries.map((country: country, index: number) => {
-          return (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {countries.length === 0 ? (
+          <div>Loading...</div>
+        ) : (
+          filteredCountries.map((country: country, index: number) => (
             <CountryCard
               name={country?.name?.common}
               region={country.region}
               population={country.population}
               key={index}
             />
-          );
-        })}
+          ))
+        )}
       </div>
     </div>
   );
