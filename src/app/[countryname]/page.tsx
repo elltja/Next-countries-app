@@ -1,5 +1,5 @@
 import GoogleMapsButton from "@/components/GoogleMapsButton";
-import { country } from "@/types/types";
+import { country } from "@/lib/types";
 import Image from "next/image";
 
 export const dynamicParams = false;

@@ -1,7 +1,7 @@
 import { CountryCard } from "@/components/CountryCard";
 import FilterSelect from "@/components/FilterSelect";
 import SearchBox from "@/components/SearchBox";
-import { type country } from "@/types/types";
+import { type country } from "@/lib/types";
 
 export default async function HomePage({
   searchParams,
