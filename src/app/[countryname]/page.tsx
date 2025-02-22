@@ -26,24 +26,39 @@ export default async function CountryPage({
   const countryData = (await res.json())[0];
 
   return (
-    <div className="flex p-16 w-3/4 gap-56">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-4xl my-4">{countryData.name.common}</h1>
-        <p>Capital: {countryData.capital}</p>
-        <p>Population: {countryData.population}</p>
-        <p>Region: {countryData.region}</p>
-        <p>Subregion: {countryData.subregion}</p>
-        <br />
-        <GoogleMapsButton url={countryData.maps.googleMaps} />
+    <div className="container p-8">
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-24 justify-center my-32">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-4xl font-bold text-gray-800">
+            {countryData.name.common}
+          </h1>
+          <p className="text-lg">
+            Capital:{" "}
+            <span className="text-gray-600">{countryData.capital}</span>
+          </p>
+          <p className="text-lg">
+            Population:{" "}
+            <span className="text-gray-600">
+              {countryData.population.toLocaleString()}
+            </span>
+          </p>
+          <p className="text-lg">
+            Region: <span className="text-gray-600">{countryData.region}</span>
+          </p>
+          <p className="text-lg">
+            Subregion:{" "}
+            <span className="text-gray-600">{countryData.subregion}</span>
+          </p>
+          <GoogleMapsButton url={countryData.maps.googleMaps} />
+        </div>
+        <Image
+          src={countryData.flags.svg}
+          alt={`${countryData.name.common}'s flag`}
+          width={0}
+          height={0}
+          className="h-60 w-fit rounded-lg"
+        />
       </div>
-
-      <Image
-        src={countryData.flags.svg}
-        alt={`${countryData.name.common}'s flag`}
-        width={0}
-        height={0}
-        className="w-80 h-auto"
-      />
     </div>
   );
 }

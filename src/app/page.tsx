@@ -37,18 +37,14 @@ export default async function HomePage({
         </div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {countries.length === 0 ? (
-          <div>Loading...</div>
-        ) : (
-          filteredCountries.map((country: country, index: number) => (
-            <CountryCard
-              name={country?.name?.common}
-              region={country.region}
-              population={country.population}
-              key={index}
-            />
-          ))
-        )}
+        {filteredCountries.map((country: country, index: number) => (
+          <CountryCard
+            name={country?.name?.common}
+            region={country.region}
+            population={country.population}
+            key={index}
+          />
+        ))}
       </div>
     </div>
   );
